@@ -157,14 +157,14 @@ const updateImageCloudinary = async(req, res = response) => {
 
         cloudinary.uploader.destroy(publicId);
 
-        const pathImage = path.join(__dirname, '../uploads', coleccion, model.img);
+        // const pathImage = path.join(__dirname, '../uploads', coleccion, model.img);
         // if(fs.existsSync(pathImage)) {
         //     fs.unlinkSync(pathImage);
         // }
     }
 
     const { tempFilePath } = req.files.archivo
-    const { secure_url } = await cloudinary.uploader.upload(-tempFilePath)
+    const { secure_url } = await cloudinary.uploader.upload(tempFilePath)
     model.img = secure_url;
     // model.img = await uploadFile(req.files, undefined, coleccion);
     await model.save();
